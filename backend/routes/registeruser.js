@@ -10,12 +10,10 @@ router.post("/",validate(registeruserSchema),async (req,res)=>{
 const salt=await bcrypt.genSalt(10)
 const hash=await bcrypt.hash(req.body.password,salt)
 //user exist logic
-
 const usernoteligible=await registeruser.findOne({email:req.body.email})
 if (usernoteligible) {
   return  res.status(409).send('This email is already registered');
-   // return res.send("This Email already registered"); // Add return statement here
-  }
+     }
 const postdata=new registeruser({
     username:req.body.username,
     email:req.body.email,
