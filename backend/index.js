@@ -30,15 +30,20 @@ app.use('/api/menudata', menudata);
 app.use('/api/checkout', order);
 app.use('/api/deletedata',deletes)
 
-mongoose.connect(process.env.MONGO_URL)
-.then(()=>console.log("Connecting with mongodb database"))
-.catch(err => console.error("Error connecting to MongoDB:", err.message));
-  
+const connectdb=async ()=>{
+  await  mongoose.connect(process.env.MONGO_URL)
+    .then(()=>console.log("Connecting with mongodb database"))
+    .catch(err => console.error("Error connecting to MongoDB:", err.message));
+      
+}
+
 
 app.get("*", (req, res)=> {
 res.sendFile(path.join(__dirname, "client","build","index.html"));
 });
 
 const port = process.env.PORT || 3000
-app.listen( port,()=>console.log("listening on port",port))
 
+connectdb().then(() => {
+app.listen( port,()=>console.log("listening on port",port))
+})
