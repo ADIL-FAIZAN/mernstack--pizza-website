@@ -1,0 +1,20 @@
+{
+    "version": 2,
+    "name": "backend",  
+    "builds": [
+      { "src": "index.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+      { "src": "/api/updateddata/(.*)", "dest": "/api/updateddata" },
+      { "src": "/api/registeruser/(.*)", "dest": "/api/registeruser" },
+      { "src": "/api/userorder/(.*)", "dest": "/api/userorder" },
+      { "src": "/api/pizzabyid/(.*)", "dest": "/api/pizzabyid" },
+      { "src": "/api/login/(.*)", "dest": "/api/login" },
+      { "src": "/api/category/(.*)", "dest": "/api/category" },
+      { "src": "/api/menudata/(.*)", "dest": "/api/menudata" },
+      { "src": "/api/checkout/(.*)", "dest": "/api/checkout" },
+      { "src": "/api/deletedata/(.*)", "dest": "/api/deletedata" },
+      { "src": "/(.*)", "dest": "/index.js" }
+    ]
+  }
+
